@@ -26,7 +26,7 @@ load_dotenv()
 # =============================================================================
 print("[1/4] Setting up PostgreSQL connection...")
 engine = create_engine(
-    "postgresql+psycopg2://postgres@localhost:5432/memoriv3_do2"
+    "postgresql+psycopg2://postgres@localhost:5432/memori-v3"
 )
 db_session_factory = sessionmaker(bind=engine)
 print("      Database connected successfully")
