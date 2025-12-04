@@ -2,8 +2,6 @@
 
 A demonstration of integrating DigitalOcean Gradient AI Agents with [Memori](https://github.com/MemoriLabs/Memori) for persistent conversation memory using PostgreSQL storage.
 
-Learn more at [memorilabs.ai](https://memorilabs.ai/)
-
 ## Overview
 
 This project showcases how to build AI-powered customer support agents using DigitalOcean's Gradient AI platform with automatic memory persistence. The integration enables:
@@ -15,20 +13,35 @@ This project showcases how to build AI-powered customer support agents using Dig
 ## Architecture
 
 ```
-                         +------------------+
-                         |    PostgreSQL    |
-                         |  (Memory Store)  |
-                         +--------+---------+
-                                  |
-                                  | persist/retrieve
-                                  |
-+--------+     +--------+---------+--------+     +-------------------+
-|  User  | --> |         Memori           | --> | Gradient AI Agent |
-|        | <-- |    (Memory Layer)        | <-- |       (LLM)       |
-+--------+     +---------------------------+     +-------------------+
+┌─────────────────────────────────────────┐
+│ APPLICATION LAYER                       │
+│  Your code + Gradient AI Agent          │
+└──────────────┬──────────────────────────┘
+               │
+┌──────────────▼──────────────────────────┐
+│ MEMORI CORE                             │
+│  • LLM provider wrappers                │
+│  • Attribution (entity/process/session) │
+│  • Recall API                           │
+└──────────────┬──────────────────────────┘
+               │
+┌──────────────▼──────────────────────────┐
+│ STORAGE LAYER                           │
+│  • Connection Registry                  │
+│  • Database Adapters                    │
+└──────────────┬──────────────────────────┘
+               │
+┌──────────────▼──────────────────────────┐
+│ PostgreSQL                              │
+└─────────────────────────────────────────┘
 ```
 
-Memori acts as an intercepting memory layer between the user and the Gradient AI Agent, automatically capturing and retrieving conversation context.
+**Attribution Model:**
+- **Entity**: The user interacting with the system
+- **Process**: The Gradient AI agent handling requests
+- **Session**: Groups related interactions for context
+
+**Advanced Augmentation** extracts facts, preferences, and relationships asynchronously with zero latency impact.
 
 ## Prerequisites
 
@@ -40,7 +53,7 @@ Memori acts as an intercepting memory layer between the user and the Gradient AI
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/customer-support.git
+git clone https://github.com/harshalmore31/customer-support.git
 cd customer-support
 
 # Create virtual environment
