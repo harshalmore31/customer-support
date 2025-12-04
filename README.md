@@ -1,14 +1,16 @@
-# DigitalOcean Gradient AI Agent with Persistent Memory
+# DigitalOcean Gradient AI Agent with Memori
 
 A demonstration of integrating DigitalOcean Gradient AI Agents with [Memori](https://github.com/MemoriLabs/Memori) for persistent conversation memory using PostgreSQL storage.
 
 ## Overview
 
-This project showcases how to build AI-powered customer support agents using DigitalOcean's Gradient AI platform with automatic memory persistence. The integration enables:
+This repository demonstrates how to build a stateful, AI-powered customer-support agent using DigitalOcean’s Gradient AI platform combined with Memori, a SQL-native memory layer that automatically captures, stores, and recalls long-term user context.
 
-- **Automatic Memory Tracking**: Conversations are persisted without manual save/recall operations
-- **PostgreSQL Persistence**: Durable storage for conversation history across sessions
-- **OpenAI-Compatible API**: Seamless integration with DigitalOcean Gradient endpoints
+- Automatic long-term memory (no manual save/recall)
+- PostgreSQL-backed durable storage
+- Plug-and-play support for any LLM accessible through Gradient
+- OpenAI-compatible API surface for easy migration and hosting
+
 
 ## Architecture
 
