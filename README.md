@@ -1,6 +1,8 @@
 # DigitalOcean Gradient AI Agent with Persistent Memory
 
-A demonstration of integrating DigitalOcean Gradient AI Agents with [Memori](https://github.com/memori-ai/memori) for persistent conversation memory using PostgreSQL storage.
+A demonstration of integrating DigitalOcean Gradient AI Agents with [Memori](https://github.com/MemoriLabs/Memori) for persistent conversation memory using PostgreSQL storage.
+
+Learn more at [memorilabs.ai](https://memorilabs.ai/)
 
 ## Overview
 
