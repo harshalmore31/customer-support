@@ -1,15 +1,26 @@
 # DigitalOcean Gradient AI Agent with Memori
 
-A demonstration of integrating DigitalOcean Gradient AI Agents with [Memori](https://github.com/MemoriLabs/Memori) for persistent conversation memory using PostgreSQL storage.
+This repository demonstrates how to build a stateful, AI-powered customer-support agent using DigitalOcean's Gradient AI platform combined with [Memori](https://github.com/MemoriLabs/Memori), a SQL-native memory layer that automatically captures, stores, and recalls long-term user context.
 
-## Overview
-
-This repository demonstrates how to build a stateful, AI-powered customer-support agent using DigitalOcean’s Gradient AI platform combined with Memori, a SQL-native memory layer that automatically captures, stores, and recalls long-term user context.
+The integration delivers:
 
 - Automatic long-term memory (no manual save/recall)
 - PostgreSQL-backed durable storage
 - Plug-and-play support for any LLM accessible through Gradient
 - OpenAI-compatible API surface for easy migration and hosting
+
+## Overview
+
+Traditional agents lose context between sessions. This example shows how Memori + Gradient AI closes that gap by providing:
+
+**Persistent Memory**
+Facts, preferences, entities, and relationships extracted from conversations are automatically written to PostgreSQL with no latency impact.
+
+**Stateless Agent, Stateful Behavior**
+Your Gradient AI Agent remains stateless, while Memori maintains continuity across all sessions and channels.
+
+**Drop-in Integration**
+Memori exposes an OpenAI-compatible API wrapper, so your code changes are minimal when switching from OpenAI-hosted agents to Gradient-hosted agents.
 
 
 ## Architecture
@@ -38,18 +49,21 @@ This repository demonstrates how to build a stateful, AI-powered customer-suppor
 └─────────────────────────────────────────┘
 ```
 
-**Attribution Model:**
-- **Entity**: The user interacting with the system
-- **Process**: The Gradient AI agent handling requests
-- **Session**: Groups related interactions for context
+### Attribution Model
 
-**Advanced Augmentation** extracts facts, preferences, and relationships asynchronously with zero latency impact.
+Memori assigns memory at three levels so agents can reason over long-term user state:
+
+- **Entity** - end user (customer)
+- **Process** - the Gradient AI Agent
+- **Session** - a single conversation/task boundary
+
+Advanced augmentation runs asynchronously, extracting facts, preferences, relationships, and timelines with zero extra latency to the agent.
 
 ## Prerequisites
 
 - Python 3.10+
-- PostgreSQL database
-- DigitalOcean Gradient AI Agent credentials
+- PostgreSQL instance (local or managed)
+- DigitalOcean Gradient AI Agent Deployment (endpoint + access key)
 
 ## Installation
 
@@ -132,6 +146,3 @@ client = OpenAI(
 )
 ```
 
-## License
-
-MIT License
